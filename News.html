@@ -1,0 +1,1086 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BAPE® News</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        body {
+            background-color: #000;
+            color: #fff;
+            overflow-x: hidden;
+        }
+
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        /* Utility Classes */
+        .flex { display: flex; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .text-center { text-align: center; }
+        .grid { display: grid; }
+        .relative { position: relative; }
+        .absolute { position: absolute; }
+        .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+        .mt-2 { margin-top: 0.5rem; }
+        .mt-4 { margin-top: 1rem; }
+        .mt-6 { margin-top: 1.5rem; }
+        .mt-8 { margin-top: 2rem; }
+        .mt-10 { margin-top: 2.5rem; }
+        .mb-2 { margin-bottom: 0.5rem; }
+        .mb-4 { margin-bottom: 1rem; }
+        .mb-6 { margin-bottom: 1.5rem; }
+        .mb-8 { margin-bottom: 2rem; }
+        .mr-2 { margin-right: 0.5rem; }
+        .mr-5 { margin-right: 1.25rem; }
+        .mx-8 { margin-left: 2rem; margin-right: 2rem; }
+        .py-4 { padding-top: 1rem; padding-bottom: 1rem; }
+        .py-8 { padding-top: 2rem; padding-bottom: 2rem; }
+        .py-12 { padding-top: 3rem; padding-bottom: 3rem; }
+        .px-4 { padding-left: 1rem; padding-right: 1rem; }
+        .space-x-4 > * + * { margin-left: 1rem; }
+        .space-x-5 > * + * { margin-left: 1.25rem; }
+        .space-x-6 > * + * { margin-left: 1.5rem; }
+        .space-y-2 > * + * { margin-top: 0.5rem; }
+        .space-y-3 > * + * { margin-top: 0.75rem; }
+        .space-y-4 > * + * { margin-top: 1rem; }
+        .gap-4 { gap: 1rem; }
+        .gap-8 { gap: 2rem; }
+        .gap-10 { gap: 2.5rem; }
+        .w-full { width: 100%; }
+        .h-full { height: 100%; }
+        .w-12 { width: 3rem; }
+        .h-12 { height: 3rem; }
+        .w-6 { width: 1.5rem; }
+        .h-6 { height: 1.5rem; }
+        .w-5 { width: 1.25rem; }
+        .h-5 { height: 1.25rem; }
+        .rounded-md { border-radius: 0.375rem; }
+        .text-xs { font-size: 0.75rem; }
+        .text-sm { font-size: 0.875rem; }
+        .text-base { font-size: 1rem; }
+        .text-lg { font-size: 1.125rem; }
+        .text-xl { font-size: 1.25rem; }
+        .text-2xl { font-size: 1.5rem; }
+        .font-medium { font-weight: 500; }
+        .font-semibold { font-weight: 600; }
+        .text-white { color: #fff; }
+        .text-gray-300 { color: #d1d5db; }
+        .text-gray-400 { color: #9ca3af; }
+        .text-gray-500 { color: #6b7280; }
+        .text-green-500 { color: #10b981; }
+        .text-red-500 { color: #ef4444; }
+        .bg-gradient-to-r { background-image: linear-gradient(to right, var(--tw-gradient-stops)); }
+        .from-gray-800 { --tw-gradient-from: #1f2937; --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(31, 41, 55, 0)); }
+        .to-gray-900 { --tw-gradient-to: #111827; }
+        .border-b { border-bottom-width: 1px; }
+        .border-t { border-top-width: 1px; }
+        .border-gray-800 { border-color: #1f2937; }
+        .shadow-lg { box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); }
+        .leading-relaxed { line-height: 1.625; }
+        .underline { text-decoration: underline; }
+        .transition-colors { transition-property: color, background-color, border-color, text-decoration-color, fill, stroke; transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1); transition-duration: 150ms; }
+        .hover\:text-white:hover { color: #fff; }
+        .hover\:text-gray-300:hover { color: #d1d5db; }
+
+        /* Announcement Bar */
+        .announcement-bar {
+            background-color: #fff;
+            color: #000;
+            text-align: center;
+            padding: 6px 0;
+            font-size: 11px;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            overflow: hidden;
+        }
+
+        .marquee-container {
+            width: 100%;
+            overflow: hidden;
+        }
+
+        .marquee-content {
+            display: inline-block;
+            white-space: nowrap;
+            animation: marquee 30s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Header Styles */
+        .header {
+            background-color: #0f0f0f;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(255,255,255,0.08);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 24px;
+            letter-spacing: 2px;
+            position: relative;
+            display: inline-block;
+            font-family: 'Roboto', sans-serif;
+            text-transform: uppercase;
+        }
+
+        .nav-item {
+            position: relative;
+        }
+
+        .nav-link {
+            position: relative;
+            padding: 8px 0;
+            font-weight: 500;
+            transition: all 0.3s ease;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            display: block;
+            color: #e0e0e0;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #888, #aaa);
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: #fff;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background-color: #0f0f0f;
+            min-width: 220px;
+            padding: 15px 0;
+            display: none;
+            border: 1px solid rgba(255,255,255,0.08);
+            border-top: 2px solid #888;
+            z-index: 10;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-radius: 0 0 4px 4px;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: opacity 0.3s, transform 0.3s;
+        }
+
+        .nav-item:hover .dropdown-menu {
+            display: block;
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-item.collapsible .dropdown-menu {
+            display: none;
+        }
+
+        .nav-item.collapsible:hover .dropdown-menu {
+            display: block;
+        }
+
+        .nav-item.collapsible.active .dropdown-menu {
+            display: block;
+        }
+
+        .dropdown-link {
+            display: block;
+            padding: 10px 20px;
+            font-size: 12px;
+            color: #e0e0e0;
+            transition: all 0.2s;
+        }
+
+        .dropdown-link:hover {
+            color: #fff;
+            background-color: rgba(255,255,255,0.05);
+        }
+
+        .icon-btn {
+            color: #e0e0e0;
+            transition: all 0.3s;
+            width: 40px;
+            height: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+        }
+
+        .icon-btn:hover {
+            color: #fff;
+            background-color: rgba(255,255,255,0.05);
+            transform: translateY(-2px);
+        }
+
+        .cart-icon {
+            position: relative;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -5px;
+            right: -5px;
+            background: linear-gradient(135deg, #888, #aaa);
+            color: #fff;
+            font-size: 10px;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            transition: all 0.3s;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+
+        .cart-count.animate {
+            transform: scale(1.5);
+        }
+
+        /* Footer Styles */
+        .footer {
+            background-color: #0a0a0a;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            position: relative;
+        }
+
+        .footer::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+        }
+
+        .footer-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+
+        .footer-title {
+            font-weight: 600;
+            font-size: 14px;
+            letter-spacing: 1px;
+            color: #fff;
+            position: relative;
+            display: inline-block;
+            padding-bottom: 10px;
+        }
+
+        .footer-title::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 30px;
+            height: 2px;
+            background: linear-gradient(90deg, #888, #aaa);
+        }
+
+        .footer-link {
+            display: block;
+            color: #999;
+            transition: all 0.3s;
+            font-size: 13px;
+            letter-spacing: 0.5px;
+            position: relative;
+            padding-left: 0;
+            transition: all 0.3s ease;
+        }
+
+        .footer-link:hover {
+            color: #fff;
+            padding-left: 5px;
+        }
+
+        .social-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background-color: rgba(255,255,255,0.05);
+            color: #e0e0e0;
+            transition: all 0.3s;
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .social-icon:hover {
+            background-color: rgba(255,255,255,0.1);
+            color: #fff;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.05);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+        }
+
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            left: -100%;
+            width: 80%;
+            height: 100vh;
+            background-color: #000;
+            z-index: 200;
+            padding: 60px 20px;
+            transition: all 0.3s;
+            overflow-y: auto;
+        }
+
+        .mobile-menu.active {
+            left: 0;
+        }
+
+        .mobile-menu-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: rgba(0,0,0,0.8);
+            z-index: 199;
+            display: none;
+        }
+
+        .mobile-menu-overlay.active {
+            display: block;
+        }
+
+        .mobile-menu-close {
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 20px;
+            color: #fff;
+        }
+
+        .mobile-nav-link {
+            display: block;
+            padding: 12px 0;
+            border-bottom: 1px solid #222;
+            font-weight: 400;
+            letter-spacing: 0.5px;
+            color: #fff;
+            font-size: 12px;
+        }
+
+        /* News Page Styles */
+        .news-grid {
+            display: grid;
+            grid-template-columns: repeat(1, 1fr);
+            gap: 20px;
+        }
+
+        @media (min-width: 768px) {
+            .news-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (min-width: 1024px) {
+            .news-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .news-card {
+            background-color: #000;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            position: relative;
+            cursor: pointer;
+            overflow: hidden;
+        }
+
+        .news-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .news-image {
+            width: 100%;
+            padding-top: 66.67%; /* 3:2 aspect ratio */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .news-image img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .news-card:hover .news-image img {
+            transform: scale(1.05);
+        }
+
+        .news-info {
+            padding: 15px 0;
+            text-align: left;
+        }
+
+        .news-date {
+            font-size: 12px;
+            color: #999;
+            margin-bottom: 8px;
+        }
+
+        .news-title {
+            font-weight: 500;
+            font-size: 16px;
+            color: #e0e0e0;
+            letter-spacing: 0.5px;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+        }
+
+        .news-card:hover .news-title {
+            color: #fff;
+        }
+
+        .news-excerpt {
+            font-size: 14px;
+            color: #d1d5db;
+            line-height: 1.5;
+            margin-bottom: 15px;
+            display: -webkit-box;
+            -webkit-line-clamp: 3;
+            -webkit-box-orient: vertical;
+            overflow: hidden;
+        }
+
+        .read-more-btn {
+            display: inline-block;
+            padding: 10px 20px;
+            background: linear-gradient(135deg, #888, #aaa);
+            color: #fff;
+            font-size: 12px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .read-more-btn:hover {
+            background: linear-gradient(135deg, #aaa, #ccc);
+            transform: translateY(-2px);
+        }
+
+        /* Newsletter Styles */
+        .newsletter-box {
+            background: linear-gradient(145deg, #111 0%, #0a0a0a 100%);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 10px;
+            padding: 25px;
+            box-shadow: 0 15px 40px rgba(0,0,0,0.3);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-box::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 3px;
+            background: linear-gradient(90deg, #888, #aaa);
+        }
+
+        .newsletter-text {
+            font-size: 13px;
+            color: #bbb;
+            line-height: 1.6;
+        }
+
+        .newsletter-form {
+            position: relative;
+        }
+
+        .newsletter-input {
+            background-color: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 6px;
+            color: #fff;
+            padding: 12px 15px;
+            width: 100%;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: rgba(255,255,255,0.2);
+            background-color: rgba(255,255,255,0.08);
+            box-shadow: 0 0 0 3px rgba(255,255,255,0.05);
+        }
+
+        .newsletter-btn {
+            background: linear-gradient(135deg, #888, #aaa);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            padding: 12px 20px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+            font-size: 13px;
+            width: 100%;
+            text-transform: uppercase;
+            cursor: pointer;
+            margin-top: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .newsletter-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: all 0.6s;
+        }
+
+        .newsletter-btn:hover {
+            background: linear-gradient(135deg, #999, #bbb);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        .newsletter-btn:hover::before {
+            left: 100%;
+        }
+
+        .newsletter-success {
+            display: none;
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.3);
+            color: #10b981;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 13px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        .newsletter-error {
+            display: none;
+            background-color: rgba(239, 68, 68, 0.1);
+            border: 1px solid rgba(239, 68, 68, 0.3);
+            color: #ef4444;
+            padding: 12px;
+            border-radius: 6px;
+            margin-top: 15px;
+            font-size: 13px;
+            text-align: center;
+            animation: fadeIn 0.5s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .newsletter-benefits {
+            margin-top: 20px;
+            border-top: 1px solid rgba(255,255,255,0.08);
+            padding-top: 20px;
+        }
+
+        .benefit-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+        }
+
+        .benefit-icon {
+            color: #aaa;
+            margin-right: 10px;
+            font-size: 12px;
+            background-color: rgba(255,255,255,0.05);
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .benefit-text {
+            font-size: 12px;
+            color: #bbb;
+        }
+
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .desktop-nav {
+                display: none;
+            }
+
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .newsletter-input,
+            .newsletter-btn {
+                width: 100%;
+                max-width: 300px;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        button {
+            cursor: pointer;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            object-fit: cover;
+        }
+    </style>
+</head>
+<body>
+    <!-- Announcement Bar with Marquee -->
+    <div class="announcement-bar">
+        <div class="container">
+            <div class="marquee-container">
+                <div class="marquee-content">
+                    <span>FREE SHIPPING ON ORDERS OVER ¥30,000</span>
+                    <span class="mx-8">•</span>
+                    <span>NEW COLLECTION AVAILABLE NOW</span>
+                    <span class="mx-8">•</span>
+                    <span>WORLDWIDE SHIPPING</span>
+                    <span class="mx-8">•</span>
+                    <span>FREE SHIPPING ON ORDERS OVER ¥30,000</span>
+                    <span class="mx-8">•</span>
+                    <span>NEW COLLECTION AVAILABLE NOW</span>
+                    <span class="mx-8">•</span>
+                    <span>WORLDWIDE SHIPPING</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="flex items-center justify-between py-4">
+                <div class="flex items-center">
+                    <button class="mobile-menu-btn mr-5 text-white">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 6h16M4 12h16M4 18h16" />
+                        </svg>
+                    </button>
+                  <a href="index.html" class="logo">
+                        <img src="Images/3.png" alt="BAPE Logo" style="height: 48px; width: auto;">
+                    </a>
+                </div>
+                <nav class="desktop-nav">
+                    <ul class="flex space-x-6">
+                        <li class="nav-item collapsible" id="new-arrivals-nav">
+                            <a href="#" class="nav-link">NEW ARRIVALS</a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-link">ALL NEW ARRIVALS</a>
+                                <a href="#" class="dropdown-link">SS/2025</a>
+                                <a href="#" class="dropdown-link">BAPEXALLSTARS</a>
+                                <a href="#" class="dropdown-link">DON TOLIVER</a>
+                                <a href="#" class="dropdown-link">PREV COLLECTIONS</a>
+                            </div>
+                        </li>
+                        <li class="nav-item collapsible">
+                            <a href="Collection.html">MEN</a>
+<div class="dropdown-menu">
+                <a href="#" class="dropdown-link">ALL MEN</a>
+                <a href="#" class="dropdown-link">T-SHIRTS</a>
+                <a href="#" class="dropdown-link">HOODIES & SWEATSHIRTS</a>
+                <a href="#" class="dropdown-link">JACKETS</a>
+                <a href="#" class="dropdown-link">BOTTOMS</a>
+                <a href="#" class="dropdown-link">FOOTWEAR</a>
+                <a href="#" class="dropdown-link">ACCESSORIES</a>
+              </div>
+                        </li>
+                        <li class="nav-item collapsible">
+                            <a href="#" class="nav-link">LADIES</a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-link">ALL LADIES</a>
+                                <a href="#" class="dropdown-link">T-SHIRTS</a>
+                                <a href="#" class="dropdown-link">HOODIES & SWEATSHIRTS</a>
+                                <a href="#" class="dropdown-link">BOTTOMS</a>
+                                <a href="#" class="dropdown-link">ACCESSORIES</a>
+                            </div>
+                        </li>
+                        <li class="nav-item collapsible">
+                            <a href="#" class="nav-link">KIDS</a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-link">ALL KIDS</a>
+                                <a href="#" class="dropdown-link">BABY MILO®</a>
+                                <a href="#" class="dropdown-link">T-SHIRTS</a>
+                                <a href="#" class="dropdown-link">HOODIES & SWEATSHIRTS</a>
+                                <a href="#" class="dropdown-link">ACCESSORIES</a>
+                            </div>
+                        </li>
+                        <li class="nav-item collapsible">
+                            <a href="#" class="nav-link">ALL ITEMS</a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-link">ALL PRODUCTS</a>
+                                <a href="#" class="dropdown-link">CLOTHING</a>
+                                <a href="#" class="dropdown-link">ACCESSORIES</a>
+                                <a href="#" class="dropdown-link">FOOTWEAR</a>
+                            </div>
+                        </li>
+                        <li class="nav-item collapsible">
+                            <a href="#" class="nav-link">NEWS</a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-link">LATEST NEWS</a>
+                                <a href="#" class="dropdown-link">COLLABORATIONS</a>
+                                <a href="#" class="dropdown-link">EVENTS</a>
+                            </div>
+                        </li>
+                        <li class="nav-item collapsible">
+                            <a href="#" class="nav-link">ABOUT</a>
+                            <div class="dropdown-menu">
+                                <a href="#" class="dropdown-link">OUR STORY</a>
+                                <a href="#" class="dropdown-link">BRAND HISTORY</a>
+                                <a href="#" class="dropdown-link">CONTACT</a>
+                            </div>
+                        </li>
+                    </ul>
+                </nav>
+                <div class="flex items-center space-x-5">
+                    <a href="#" class="icon-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="icon-btn">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                        </svg>
+                    </a>
+                    <a href="#" class="icon-btn cart-icon relative">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z" />
+                        </svg>
+                        <span class="cart-count">0</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+        <button class="mobile-menu-close">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <nav>
+            <ul>
+                <li><a href="#" class="mobile-nav-link">NEW ARRIVALS</a></li>
+                <li><a href="#" class="mobile-nav-link">MEN</a></li>
+                <li><a href="#" class="mobile-nav-link">LADIES</a></li>
+                <li><a href="#" class="mobile-nav-link">KIDS</a></li>
+                <li><a href="#" class="mobile-nav-link">ALL ITEMS</a></li>
+                <li><a href="#" class="mobile-nav-link">NEWS</a></li>
+                <li><a href="#" class="mobile-nav-link">ABOUT</a></li>
+            </ul>
+        </nav>
+    </div>
+
+    <!-- Main Content -->
+    <main class="container py-12">
+        <div class="news-grid">
+            <a href="#" class="news-card">
+                <div class="news-image">
+                    <img src="Images/Bape Sakura banner.jpg" alt="News 1">
+                </div>
+            <div class="news-info">
+              <div class="news-date">JULY 10, 2025</div>
+                    <h3 class="news-title">BAPE SAKURA COLLECTION</h3>
+                <p class="news-excerpt">Cherry blossoms, heralding the arrival of spring, are beautiful yet ephemeral flowers that embody a uniquely Japanese aesthetic. The gorgeous cherry blossoms bloom in full bloom for just about two...</p>
+                <span class="read-more-btn">READ MORE</span>
+              </div>
+            </a>
+            <a href="#" class="news-card">
+                <div class="news-image">
+                    <img src="Images/Bape Shark Banner.jpg" alt="News 2">
+                </div>
+            <div class="news-info">
+              <div class="news-date">JULY 5, 2025</div>
+                    <h3 class="news-title">THE BAPE® SHARK STA IN CELEBRATION OF 20 YEARS OF THE SHARK HOODIE</h3>
+                <p class="news-excerpt">The COUNTRY PACK collection features a unique personalized experience with special customization options for the SHARK FULL ZIP HOODIE. Our community can curate their own SHARK FULL ZIP HOODIE with...</p>
+                <span class="read-more-btn">READ MORE</span>
+              </div>
+            </a>
+            <a href="#" class="news-card">
+                <div class="news-image">
+                    <img src="Images/Bape Kids Banner.jpg" alt="News 3">
+                </div>
+            <div class="news-info">
+              <div class="news-date">JUNE 25, 2025</div>
+                    <h3 class="news-title">BAPE® by KidSuper</h3>
+                <p class="news-excerpt">Japanese streetwear brand BAPE® and fashion designer and artist Colm Dillane, known as KidSuper, come together to co-create BAPE® by KidSuper, a first-of-its-kind collection in BAPE®'s pinnacle collaboration tier,...</p>
+                <span class="read-more-btn">READ MORE</span>
+              </div>
+            </a>
+            <a href="#" class="news-card">
+                <div class="news-image">
+                    <img src="Images/Bapesxconcepts banner.jpg" alt="News 4">
+                </div>
+            <div class="news-info">
+              <div class="news-date">JUNE 15, 2025</div>
+                    <h3 class="news-title">Concepts x BAPE®︎ Introduce the ‘School of Thought’ Collection</h3>
+                <p class="news-excerpt">A BATHING APE®︎ and Concepts, a heritage brand and retailer founded in Boston, introduce their latest apparel collaboration, the ‘School of Thought’ Collection. The concept of 'School of Thought' takes an Ivy league approach that’s reminiscent of the vitality in Harvard Square when class is back in session. Bridging the gap between Boston and Japan, inspiration was also taken from the phrase “Ametora,” a popular Japanese phrase from the 1980s meaning “American Traditional.” It encompasses Japan’s adoption of the American East Coast aesthetic with high-quality, clean dressing.</p>
+                <span class="read-more-btn">READ MORE</span>
+              </div>
+            </a>
+            <a href="#" class="news-card">
+                <div class="news-image">
+                    <img src="Images/Bapex watch banner.jpg" alt="News 5">
+                </div>
+            <div class="news-info">
+              <div class="news-date">JUNE 1, 2025</div>
+                    <h3 class="news-title">TYPE 2 BAPEX® ABC CAMO CRYSTAL STONE</h3>
+                <p class="news-excerpt">BAPE® is releasing the new craftsmanship of timepieces with a fusion of durability and fashion forward design. TYPE 2 BAPEX® ABC CAMO CRYSTAL STONE comes in three vibrant colourway, green, pink and blue, which showcases the brilliance of Cubic Zirconia stones, and the timepiece stands as a true testament to artisanal skill, and its silver bracelets contribute substantial gravitas to its overall aesthetic. BAPE® holds an unwavering commitment to excellence, evident in the meticulous handpicking of Cubic Zirconia stones for the watch collection.</p>
+                <span class="read-more-btn">READ MORE</span>
+              </div>
+            </a>
+            <a href="#" class="news-card">
+                <div class="news-image">
+                    <img src="Images/Bape don toliver banner.jpg" alt="News 6">
+                </div>
+            <div class="news-info">
+              <div class="news-date">MAY 20, 2025</div>
+                    <h3 class="news-title">Don Toliver brings his style to BAPE</h3>
+                <p class="news-excerpt">A BATHING APE (BAPE), the legendary Japanese brand that defines streetwear, teams up with Houston rapper and Cactus Jack member Don Toliver to launch an exclusive collaboration that fuses his urban aesthetic with the creativity of one of the most innovative artists on the music scene today. Inspired by the Hardstone Psycho and Love Sick albums, this collection is a perfect blend of BAPE’s essence and the rapper’s unique style.</p>
+                <span class="read-more-btn">READ MORE</span>
+              </div>
+            </a>
+        </div>
+    </main>
+
+    <!-- Newsletter Section -->
+    <section class="py-12 bg-gradient-to-r from-gray-800 to-gray-900">
+        <div class="container">
+            <div class="max-w-3xl mx-auto">
+                <div class="newsletter-box">
+                    <h3 class="footer-title text-center">JOIN OUR NEWSLETTER</h3>
+                    <p class="newsletter-text mt-4 text-center">Subscribe to receive updates, access to exclusive deals, and more.</p>
+                    <div class="newsletter-form mt-6">
+                        <input type="email" id="mainNewsletterEmail" class="newsletter-input" placeholder="Enter your email address">
+                        <button id="mainNewsletterSubmit" class="newsletter-btn mt-4">SUBSCRIBE</button>
+                        <div id="mainNewsletterSuccess" class="newsletter-success">
+                            Thank you for subscribing!
+                        </div>
+                        <div id="mainNewsletterError" class="newsletter-error">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+                    <div class="newsletter-benefits">
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div class="benefit-text">Exclusive first access to new products</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div class="benefit-text">Special offers and discounts</div>
+                        </div>
+                        <div class="benefit-item">
+                            <div class="benefit-icon">✓</div>
+                            <div class="benefit-text">Updates on limited edition releases</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="py-12">
+                <div class="footer-grid">
+                    <div>
+                        <h3 class="footer-title">ABOUT</h3>
+                        <div class="mt-6 space-y-3">
+                            <a href="#" class="footer-link">COMPANY</a>
+                            <a href="#" class="footer-link">STORES</a>
+                            <a href="#" class="footer-link">CAREERS</a>
+                            <a href="#" class="footer-link">PRIVACY POLICY</a>
+                            <a href="#" class="footer-link">TERMS OF USE</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="footer-title">CUSTOMER SERVICE</h3>
+                        <div class="mt-6 space-y-3">
+                            <a href="#" class="footer-link">CONTACT US</a>
+                            <a href="Shipping.html">SHIPPING &amp; RETURNS</a> <a href="#" class="footer-link">FAQ</a>
+                            <a href="#" class="footer-link">SIZE GUIDE</a>
+                            <a href="#" class="footer-link">ORDER TRACKING</a>
+                        </div>
+                    </div>
+                    <div>
+                        <h3 class="footer-title">CONNECT WITH US</h3>
+                        <div class="mt-6 flex space-x-4">
+                            <a href="https://facebook.com" target="_blank" class="social-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M16 8.049c0-4.446-3.582-8.05-8-8.05C3.58 0-.002 3.603-.002 8.05c0 4.017 2.926 7.347 6.75 7.951v-5.625h-2.03V8.05H6.75V6.275c0-2.017 1.195-3.131 3.022-3.131.876 0 1.791.157 1.791.157v1.98h-1.009c-.993 0-1.303.621-1.303 1.258v1.51h2.218l-.354 2.326H9.25V16c3.824-.604 6.75-3.934 6.75-7.951z"/>
+                                </svg>
+                            </a>
+                            <a href="https://twitter.com" target="_blank" class="social-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M5.026 15c6.038 0 9.341-5.003 9.341-9.334 0-.14 0-.282-.006-.422A6.685 6.685 0 0 0 16 3.542a6.658 6.658 0 0 1-1.889.518 3.301 3.301 0 0 0 1.447-1.817 6.533 6.533 0 0 1-2.087.793A3.286 3.286 0 0 0 7.875 6.03a9.325 9.325 0 0 1-6.767-3.429 3.289 3.289 0 0 0 1.018 4.382A3.323 3.323 0 0 1 .64 6.575v.045a3.288 3.288 0 0 0 2.632 3.218 3.203 3.203 0 0 1-.865.115 3.23 3.23 0 0 1-.614-.057 3.283 3.283 0 0 0 3.067 2.277A6.588 6.588 0 0 1 .78 13.58a6.32 6.32 0 0 1-.78-.045A9.344 9.344 0 0 0 5.026 15z"/>
+                                </svg>
+                            </a>
+                            <a href="https://instagram.com" target="_blank" class="social-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8 0C5.829 0 5.556.01 4.703.048 3.85.088 3.269.222 2.76.42a3.917 3.917 0 0 0-1.417.923A3.927 3.927 0 0 0 .42 2.76C.222 3.268.087 3.85.048 4.7.01 5.555 0 5.827 0 8.001c0 2.172.01 2.444.048 3.297.04.852.174 1.433.372 1.942.205.526.478.972.923 1.417.444.445.89.719 1.416.923.51.198 1.09.333 1.942.372C5.555 15.99 5.827 16 8 16s2.444-.01 3.298-.048c.851-.04 1.434-.174 1.943-.372a3.916 3.916 0 0 0 1.416-.923c.445-.445.718-.891.923-1.417.197-.509.332-1.09.372-1.942C15.99 10.445 16 10.173 16 8s-.01-2.445-.048-3.299c-.04-.851-.175-1.433-.372-1.941a3.926 3.926 0 0 0-.923-1.417A3.911 3.911 0 0 0 13.24.42c-.51-.198-1.092-.333-1.943-.372C10.443.01 10.172 0 7.998 0h.003zm-.717 1.442h.718c2.136 0 2.389.007 3.232.046.78.035 1.204.166 1.486.275.373.145.64.319.92.599.28.28.453.546.598.92.11.281.24.705.275 1.485.039.843.047 1.096.047 3.231s-.008 2.389-.047 3.232c-.035.78-.166 1.203-.275 1.485a2.47 2.47 0 0 1-.599.919c-.28.28-.546.453-.92.598-.28.11-.704.24-1.485.276-.843.038-1.096.047-3.232.047s-2.39-.009-3.233-.047c-.78-.036-1.203-.166-1.485-.276a2.478 2.478 0 0 1-.92-.598 2.48 2.48 0 0 1-.6-.92c-.109-.281-.24-.705-.275-1.485-.038-.843-.046-1.096-.046-3.233 0-2.136.008-2.388.046-3.231.036-.78.166-1.204.276-1.486.145-.373.319-.64.599-.92.28-.28.546-.453.92-.598.282-.11.705-.24 1.485-.276.738-.034 1.024-.044 2.515-.045v.002zm4.988 1.328a.96.96 0 1 0 0 1.92.96.96 0 0 0 0-1.92zm-4.27 1.122a4.109 4.109 0 1 0 0 8.217 4.109 4.109 0 0 0 0-8.217zm0 1.441a2.667 2.667 0 1 1 0 5.334 2.667 2.667 0 0 1 0-5.334z"/>
+                                </svg>
+                            </a>
+                            <a href="https://youtube.com" target="_blank" class="social-icon">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="currentColor" viewBox="0 0 16 16">
+                                    <path d="M8.051 1.999h.089c.822.003 4.987.033 6.11.335a2.01 2.01 0 0 1 1.415 1.42c.101.38.172.883.22 1.402l.01.104.022.26.008.104c.065.914.073 1.77.074 1.957v.075c-.001.194-.01 1.108-.082 2.06l-.008.105-.009.104c-.05.572-.124 1.14-.235 1.558a2.007 2.007 0 0 1-1.415 1.42c-1.16.312-5.569.334-6.18.335h-.142c-.309 0-1.587-.006-2.927-.052l-.17-.006-.087-.004-.171-.007-.171-.007c-1.11-.049-2.167-.128-2.654-.26a2.007 2.007 0 0 1-1.415-1.419c-.111-.417-.185-.986-.235-1.558L.09 9.82l-.008-.104A31.4 31.4 0 0 1 0 7.68v-.123c.002-.215.01-.958.064-1.778l.007-.103.003-.052.008-.104.022-.26.01-.104c.048-.519.119-1.023.22-1.402a2.007 2.007 0 0 1 1.415-1.42c.487-.13 1.544-.21 2.654-.26l.17-.007.172-.006.086-.003.171-.007A99.788 99.788 0 0 1 7.858 2h.193zM6.4 5.209v4.818l4.157-2.408L6.4 5.209z"/>
+                                </svg>
+                            </a>
+                        </div>
+                        <div class="mt-6">
+                            <a href="#" class="block">
+                                <img src="Images/3.png" alt="BAPE Logo" style="height: 60px; width: auto;">
+                            </a>
+                        </div>
+                    </div>
+        
+                    </div>
+                </div>
+            </div>
+            <div class="footer-bottom py-8 text-center text-sm text-gray-500">
+                <p>© 2023 BAPE®. All Rights Reserved.</p>
+            </div>
+    </footer>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+        const mobileMenuClose = document.querySelector('.mobile-menu-close');
+        const mobileMenu = document.querySelector('.mobile-menu');
+        const mobileMenuOverlay = document.querySelector('.mobile-menu-overlay');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            mobileMenuOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        mobileMenuOverlay.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            mobileMenuOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        // Newsletter Form Handling
+        const newsletterForm = document.querySelector('.newsletter-form');
+        const newsletterInput = document.getElementById('mainNewsletterEmail');
+        const newsletterSubmit = document.getElementById('mainNewsletterSubmit');
+        const newsletterSuccess = document.getElementById('mainNewsletterSuccess');
+        const newsletterError = document.getElementById('mainNewsletterError');
+
+        newsletterSubmit.addEventListener('click', (e) => {
+            e.preventDefault();
+            const email = newsletterInput.value.trim();
+            const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+            if (emailRegex.test(email)) {
+                newsletterSuccess.style.display = 'block';
+                newsletterError.style.display = 'none';
+                newsletterInput.value = '';
+                setTimeout(() => {
+                    newsletterSuccess.style.display = 'none';
+                }, 3000);
+            } else {
+                newsletterError.style.display = 'block';
+                newsletterSuccess.style.display = 'none';
+                setTimeout(() => {
+                    newsletterError.style.display = 'none';
+                }, 3000);
+            }
+        });
+    </script>
+</body>
+</html>
